@@ -15,7 +15,7 @@ const users = new Map(); // username -> { passwordHash }
 // Register (demo)
 app.post("/api/register", async (req, res) => {
   try {
-    const { username, password } = req.body || {};
+    const { username, password123 } = req.body || {};
     if (!username || !password) return res.status(400).json({ error: "Missing username or password" });
     if (users.has(username)) return res.status(409).json({ error: "User already exists" });
     const passwordHash = await bcrypt.hash(password, 10);
